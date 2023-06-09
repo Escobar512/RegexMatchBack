@@ -14,21 +14,15 @@ const getAllObjectTechnologies = async (req, res) => {
   }
 };
 
+
 const getTechnologyIdsByDObjectId = async (req, res) => {
-  const { dObjectId } = req.query;
+  const objectId = req.params.dObjectId;
 
   try {
-    const objectTechnologies = await ObjectTechnologiesModel.find({ dObjectId });
-
-    if (objectTechnologies.length === 0) {
-      return handlehttpError(res, "OBJECT_TECHNOLOGIES_NOT_FOUND", 404);
-    }
-
-    const technologyIds = objectTechnologies.map(obj => obj.technologyId);
-
-    res.send( technologyIds );
+    const objectTechnologies = await ObjectTechnologiesModel.find({ dObjectId: objectId });
+    res.send( objectTechnologies );
   } catch (e) {
-    handlehttpError(res, "ERROR_FIND_OBJECT_TECHNOLOGIES");
+    res.send({ e });
   }
 };
 

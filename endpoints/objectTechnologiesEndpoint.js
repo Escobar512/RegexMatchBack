@@ -8,7 +8,7 @@ const { getAllObjectTechnologies,
     getMostTechnologiesMatched } = require("../controllers/objectTechnologiesController");
 
 router.get("/", getAllObjectTechnologies);
-router.get("/technologies?=dObjectId", getTechnologyIdsByDObjectId);
+router.get("/technologies/:dObjectId", getTechnologyIdsByDObjectId);
 router.get("/technologyMatches/:dObjectId", getMostTechnologiesMatched);
 router.post("/", validatorCreateObjectTechnologies, createObjectTechnologies);
 
